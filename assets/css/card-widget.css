@@ -1,0 +1,412 @@
+/* Base Structure Only */
+.elementor-card {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.elementor-card-image {
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    margin-bottom: var(--card-image-gap, 0);
+    overflow: hidden;
+}
+
+.elementor-card-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* Title & Text Reset with Gaps */
+.elementor-heading-title {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    display: block;
+    margin-bottom: var(--card-title-gap, 0) !important;
+}
+
+.elementor-text-editor {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: normal;
+    margin-bottom: var(--card-description-gap, 0) !important;
+}
+
+/* Content Wrapper */
+.elementor-card-content {
+    margin-bottom: var(--card-content-gap, 0);
+}
+
+/* Divider Base - More Specific Reset */
+.elementor-widget-divider .elementor-divider {
+    --divider-border-width: 1px;
+    --divider-pattern-height: 1px;
+    --divider-pattern-size: 20px;
+    --divider-pattern-url: none;
+    --divider-border-style: solid;
+    --divider-weight: var(--divider-pattern-height, 1px);
+    --divider-border-start-color: var(--divider-color, #000);
+    --divider-border-end-color: var(--divider-color, #000);
+    border-top: var(--divider-border-width) var(--divider-border-style) var(--divider-color);
+    margin-top: var(--divider-top-gap, 15px);
+    margin-bottom: var(--divider-bottom-gap, 15px);
+    line-height: 0;
+    font-size: 0;
+}
+
+.elementor-widget-divider .elementor-divider-separator {
+    display: flex;
+    margin: 0;
+    direction: ltr;
+    border-top: var(--divider-border-width) var(--divider-border-style) var(--divider-color);
+    width: var(--divider-width, 100%);
+    min-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.elementor-widget-divider {
+    --divider-color: #2C2C2C;
+    --divider-width: 100%;
+    --divider-top-gap: 15px;
+    --divider-bottom-gap: 15px;
+    line-height: 0;
+    font-size: 0;
+}
+
+.elementor-widget-divider .elementor-divider.elementor-divider--view-line_text .elementor-divider-separator,
+.elementor-widget-divider .elementor-divider.elementor-divider--view-line_icon .elementor-divider-separator {
+    align-items: center;
+}
+
+.elementor-widget-divider .elementor-divider.elementor-divider--element-align-left .elementor-divider-separator {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.elementor-widget-divider .elementor-divider.elementor-divider--element-align-right .elementor-divider-separator {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.elementor-widget-divider .elementor-divider.elementor-divider--element-align-center .elementor-divider-separator {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Button Styles */
+.card-plugin .elementor-button,
+.elementor-widget-custom_card .elementor-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 1;
+    padding: 12px 24px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #818a91;
+    fill: #fff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+}
+
+/* Animasi Opsional */
+.card-plugin .elementor-button.with-fade,
+.elementor-widget-custom_card .elementor-button.with-fade {
+    transition: all 0.3s ease-in-out;
+}
+
+.card-plugin .elementor-button.with-scale:hover,
+.elementor-widget-custom_card .elementor-button.with-scale:hover {
+    transform: scale(1.05);
+}
+
+.card-plugin .elementor-button.with-slide-up:hover,
+.elementor-widget-custom_card .elementor-button.with-slide-up:hover {
+    transform: translateY(-5px);
+}
+
+.card-plugin .elementor-button.with-slide-right:hover,
+.elementor-widget-custom_card .elementor-button.with-slide-right:hover {
+    transform: translateX(5px);
+}
+
+.card-plugin .elementor-button.with-rotate:hover,
+.elementor-widget-custom_card .elementor-button.with-rotate:hover {
+    transform: rotate(5deg);
+}
+
+/* Default Button */
+.card-plugin .elementor-button-default,
+.elementor-widget-custom_card .elementor-button-default {
+    background-color: #818a91;
+    color: #fff;
+}
+
+.card-plugin .elementor-button-default:hover,
+.elementor-widget-custom_card .elementor-button-default:hover {
+    background-color: #666;
+    color: #fff;
+}
+
+/* Primary Button */
+.card-plugin .elementor-button-primary,
+.elementor-widget-custom_card .elementor-button-primary {
+    background-color: #0073aa;
+    color: #fff;
+}
+
+.card-plugin .elementor-button-primary:hover,
+.elementor-widget-custom_card .elementor-button-primary:hover {
+    background-color: #005177;
+    color: #fff;
+}
+
+/* Secondary Button */
+.card-plugin .elementor-button-secondary,
+.elementor-widget-custom_card .elementor-button-secondary {
+    background-color: #54595f;
+    color: #fff;
+}
+
+.card-plugin .elementor-button-secondary:hover,
+.elementor-widget-custom_card .elementor-button-secondary:hover {
+    background-color: #404246;
+    color: #fff;
+}
+
+/* Outline Button */
+.card-plugin .elementor-button-outline,
+.elementor-widget-custom_card .elementor-button-outline {
+    background-color: transparent;
+    color: #0073aa;
+    border: 2px solid #0073aa;
+}
+
+.card-plugin .elementor-button-outline:hover,
+.elementor-widget-custom_card .elementor-button-outline:hover {
+    background-color: #0073aa;
+    color: #fff;
+}
+
+/* Link Button */
+.card-plugin .elementor-button-link,
+.elementor-widget-custom_card .elementor-button-link {
+    background-color: transparent;
+    color: #0073aa;
+    padding: 0;
+    border-radius: 0;
+    border-bottom: 1px solid transparent;
+}
+
+.card-plugin .elementor-button-link:hover,
+.elementor-widget-custom_card .elementor-button-link:hover {
+    color: #005177;
+    border-bottom-color: #005177;
+}
+
+/* Button Wrapper */
+.card-plugin .elementor-button-wrapper,
+.elementor-widget-custom_card .elementor-button-wrapper {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: var(--card-button-gap, 15px);
+    gap: 10px;
+}
+
+/* Horizontal layout with alignments */
+.card-plugin .elementor-button-wrapper.horizontal,
+.elementor-widget-custom_card .elementor-button-wrapper.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card-plugin .elementor-button-wrapper.horizontal.start,
+.elementor-widget-custom_card .elementor-button-wrapper.horizontal.start {
+    justify-content: flex-start;
+}
+
+.card-plugin .elementor-button-wrapper.horizontal.center,
+.elementor-widget-custom_card .elementor-button-wrapper.horizontal.center {
+    justify-content: center;
+}
+
+.card-plugin .elementor-button-wrapper.horizontal.end,
+.elementor-widget-custom_card .elementor-button-wrapper.horizontal.end {
+    justify-content: flex-end;
+}
+
+.card-plugin .elementor-button-wrapper.horizontal.space-between,
+.elementor-widget-custom_card .elementor-button-wrapper.horizontal.space-between {
+    justify-content: space-between;
+}
+
+/* Vertical layout with alignments */
+.card-plugin .elementor-button-wrapper.vertical,
+.elementor-widget-custom_card .elementor-button-wrapper.vertical {
+    flex-direction: column;
+}
+
+.card-plugin .elementor-button-wrapper.vertical.start,
+.elementor-widget-custom_card .elementor-button-wrapper.vertical.start {
+    align-items: flex-start;
+}
+
+.card-plugin .elementor-button-wrapper.vertical.center,
+.elementor-widget-custom_card .elementor-button-wrapper.vertical.center {
+    align-items: center;
+}
+
+.card-plugin .elementor-button-wrapper.vertical.end,
+.elementor-widget-custom_card .elementor-button-wrapper.vertical.end {
+    align-items: flex-end;
+}
+
+.card-plugin .elementor-button-wrapper.vertical.stretch,
+.elementor-widget-custom_card .elementor-button-wrapper.vertical.stretch {
+    align-items: stretch;
+}
+
+/* Button Content */
+.card-plugin .elementor-button-content-wrapper,
+.elementor-widget-custom_card .elementor-button-content-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: var(--button-icon-spacing, 8px);
+}
+
+.card-plugin .elementor-button-text,
+.elementor-widget-custom_card .elementor-button-text {
+    flex-grow: 1;
+    order: 10;
+    display: inline-block;
+}
+
+/* Button Icon */
+.card-plugin .elementor-button-icon,
+.elementor-widget-custom_card .elementor-button-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* Icon Position */
+.card-plugin .elementor-button .elementor-align-icon-left,
+.elementor-widget-custom_card .elementor-button .elementor-align-icon-left {
+    order: 5;
+}
+
+.card-plugin .elementor-button .elementor-align-icon-right,
+.elementor-widget-custom_card .elementor-button .elementor-align-icon-right {
+    order: 15;
+}
+
+.card-plugin .elementor-button-icon i,
+.card-plugin .elementor-button-icon svg,
+.elementor-widget-custom_card .elementor-button-icon i,
+.elementor-widget-custom_card .elementor-button-icon svg {
+    width: 1em;
+    height: 1em;
+    position: relative;
+    display: block;
+}
+
+/* Basic Card Structure with Gaps */
+.custom-card {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: var(--card-padding-top, 0) var(--card-padding-right, 0) var(--card-padding-bottom, 0) var(--card-padding-left, 0);
+    line-height: 0;
+}
+
+.custom-card .card-image {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    margin-bottom: var(--card-image-gap, 0);
+}
+
+.custom-card .card-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.custom-card .card-content {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+/* Reset Default Styles with Gaps */
+.custom-card .card-title {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    margin-bottom: var(--card-title-gap, 0);
+}
+
+.custom-card .card-subtitle {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    margin-bottom: var(--card-subtitle-gap, 0);
+}
+
+.custom-card .card-description {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    margin-bottom: var(--card-description-gap, 0);
+}
+
+/* Meta Info with Gap */
+.custom-card .card-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--card-meta-gap, 0);
+}
+
+.custom-card .card-meta .card-author,
+.custom-card .card-meta .card-date {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .card-plugin .elementor-button-wrapper.horizontal,
+    .elementor-widget-custom_card .elementor-button-wrapper.horizontal {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .card-plugin .elementor-button-wrapper.horizontal .elementor-button,
+    .elementor-widget-custom_card .elementor-button-wrapper.horizontal .elementor-button {
+        width: 100%;
+    }
+} 

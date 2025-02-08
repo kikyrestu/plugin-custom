@@ -1,0 +1,165 @@
+.duplicate-card {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.duplicate-card:hover {
+    color: #00a0d2;
+}
+
+.duplicate-card .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    vertical-align: text-top;
+}
+
+.duplicate-card.updating-message {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Card Edit Form Style */
+.acf-fields {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 20px !important;
+}
+
+.acf-fields > .acf-field {
+    padding: 20px !important;
+    border-top: 1px solid #f0f0f0;
+}
+
+.acf-fields > .acf-field:first-child {
+    border-top: none;
+}
+
+/* Field Labels */
+.acf-label label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d2327;
+    margin-bottom: 8px;
+}
+
+/* Image Upload */
+.acf-field-image .acf-image-uploader {
+    background: #f9f9f9;
+    border: 2px dashed #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.acf-field-image .acf-image-uploader:hover {
+    border-color: #2271b1;
+}
+
+.acf-field-image .acf-image-uploader .image-wrap {
+    margin-bottom: 15px;
+}
+
+.acf-field-image .acf-image-uploader .image-wrap img {
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Text Fields */
+.acf-input input[type="text"],
+.acf-input input[type="url"],
+.acf-input textarea {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 12px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.acf-input input[type="text"]:focus,
+.acf-input input[type="url"]:focus,
+.acf-input textarea:focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+
+/* Button Group */
+.acf-field-group {
+    background: #f9f9f9;
+    border-radius: 6px;
+    padding: 15px !important;
+}
+
+/* Toggle Switch */
+.acf-true-false {
+    padding: 10px 0;
+}
+
+.acf-switch {
+    background: #f0f0f0;
+    border: 1px solid #ddd !important;
+    border-radius: 20px !important;
+    height: 24px !important;
+    width: 44px !important;
+    transition: all 0.3s ease;
+}
+
+.acf-switch .acf-switch-slider {
+    border-radius: 50% !important;
+    height: 20px !important;
+    width: 20px !important;
+    background: #fff !important;
+    border: none !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.acf-switch.-on {
+    background: #2271b1 !important;
+    border-color: #2271b1 !important;
+}
+
+/* Conditional Fields Animation */
+.acf-field[data-conditions] {
+    transition: all 0.3s ease;
+}
+
+/* Title Field */
+#titlewrap input {
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 16px;
+}
+
+/* Editor */
+#wp-content-editor-container {
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Submit Button */
+#publish {
+    background: #2271b1;
+    border-color: #2271b1;
+    border-radius: 4px;
+    padding: 6px 20px;
+    height: auto;
+    transition: all 0.3s ease;
+}
+
+#publish:hover {
+    background: #135e96;
+    border-color: #135e96;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .acf-fields > .acf-field {
+        padding: 15px !important;
+    }
+    
+    .acf-label label {
+        font-size: 13px;
+    }
+} 
