@@ -156,8 +156,28 @@
         }
     });
 
-    elementorFrontend.hooks.addAction('frontend/element_ready/custom_card.default', function($scope) {
-        new CardWidget({ $element: $scope });
+    jQuery(window).on('elementor/frontend/init', function() {
+        elementorFrontend.hooks.addAction('frontend/element_ready/custom_card.default', function($scope) {
+            var $card = $scope.find('.custom-card');
+            var cardId = $card.data('card-id');
+            
+            if (cardId) {
+                jQuery.ajax({
+                    url: cardWidgetData.ajaxUrl,
+                    type: 'POST',
+                    data: {
+                        action: 'get_card_data',
+                        nonce: cardWidgetData.nonce,
+                        card_id: cardId
+                    },
+                    success: function(response) {
+                        if (response.success && response.data) {
+                            $card.html(response.data);
+                        }
+                    }
+                });
+            }
+        });
     });
 
 })(jQuery); 

@@ -1,19 +1,33 @@
 /* Base Structure Only */
 .elementor-card {
-    position: relative;
     width: 100%;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    overflow: hidden; /* Mencegah konten meluap */
+}
+
+.elementor-card-wrapper {
+    width: 100%;
+    padding: var(--card-padding-top, 0) var(--card-padding-right, 0) var(--card-padding-bottom, 0) var(--card-padding-left, 0);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.elementor-card > * {
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .elementor-card-image {
     width: 100%;
     position: relative;
+    line-height: 0;
+    font-size: 0; /* Menghilangkan white space */
     margin: 0;
     padding: 0;
-    line-height: 0;
-    margin-bottom: var(--card-image-gap, 0);
-    overflow: hidden;
+    display: block;
 }
 
 .elementor-card-img {
@@ -22,84 +36,63 @@
     display: block;
     margin: 0;
     padding: 0;
+    line-height: 0;
+    vertical-align: middle; /* Menghilangkan gap di bawah gambar */
+}
+
+/* Image alignment styles */
+.elementor-card-image.left {
+    text-align: left;
+}
+
+.elementor-card-image.center {
+    text-align: center;
+}
+
+.elementor-card-image.right {
+    text-align: right;
+}
+
+.elementor-card-image.left img {
+    object-position: left;
+}
+
+.elementor-card-image.center img {
+    object-position: center;
+}
+
+.elementor-card-image.right img {
+    object-position: right;
 }
 
 /* Title & Text Reset with Gaps */
-.elementor-heading-title {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 1 !important;
-    display: block;
-    margin-bottom: var(--card-title-gap, 0) !important;
+.elementor-card .elementor-heading-title {
+    margin: 0 0 var(--card-title-gap, 0) 0;
+    padding: 0;
+    line-height: 1.2;
 }
 
-.elementor-text-editor {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: normal;
-    margin-bottom: var(--card-description-gap, 0) !important;
+.elementor-card .elementor-text-editor {
+    margin: 0 0 var(--card-description-gap, 0) 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
-/* Content Wrapper */
-.elementor-card-content {
-    margin-bottom: var(--card-content-gap, 0);
+.elementor-card .elementor-card-content {
+    margin: 0 0 var(--card-content-gap, 0) 0;
 }
 
-/* Divider Base - More Specific Reset */
-.elementor-widget-divider .elementor-divider {
-    --divider-border-width: 1px;
-    --divider-pattern-height: 1px;
-    --divider-pattern-size: 20px;
-    --divider-pattern-url: none;
-    --divider-border-style: solid;
-    --divider-weight: var(--divider-pattern-height, 1px);
-    --divider-border-start-color: var(--divider-color, #000);
-    --divider-border-end-color: var(--divider-color, #000);
-    border-top: var(--divider-border-width) var(--divider-border-style) var(--divider-color);
-    margin-top: var(--divider-top-gap, 15px);
-    margin-bottom: var(--divider-bottom-gap, 15px);
+/* Divider */
+.elementor-divider-wrapper {
     line-height: 0;
     font-size: 0;
+    padding: var(--divider-padding, 0);
 }
 
-.elementor-widget-divider .elementor-divider-separator {
-    display: flex;
-    margin: 0;
-    direction: ltr;
-    border-top: var(--divider-border-width) var(--divider-border-style) var(--divider-color);
-    width: var(--divider-width, 100%);
-    min-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.elementor-widget-divider {
-    --divider-color: #2C2C2C;
-    --divider-width: 100%;
-    --divider-top-gap: 15px;
-    --divider-bottom-gap: 15px;
-    line-height: 0;
-    font-size: 0;
-}
-
-.elementor-widget-divider .elementor-divider.elementor-divider--view-line_text .elementor-divider-separator,
-.elementor-widget-divider .elementor-divider.elementor-divider--view-line_icon .elementor-divider-separator {
-    align-items: center;
-}
-
-.elementor-widget-divider .elementor-divider.elementor-divider--element-align-left .elementor-divider-separator {
-    margin-left: 0;
-    margin-right: auto;
-}
-
-.elementor-widget-divider .elementor-divider.elementor-divider--element-align-right .elementor-divider-separator {
-    margin-left: auto;
-    margin-right: 0;
-}
-
-.elementor-widget-divider .elementor-divider.elementor-divider--element-align-center .elementor-divider-separator {
-    margin-left: auto;
-    margin-right: auto;
+.elementor-divider {
+    width: 100%;
+    border-top: 1px solid #ddd;
+    height: 0;
 }
 
 /* Button Styles */
@@ -119,6 +112,7 @@
     font-size: 15px;
     font-weight: 500;
     border: none;
+    width: auto; /* Pastikan button tidak full width */
 }
 
 /* Animasi Opsional */
@@ -220,11 +214,8 @@
 .card-plugin .elementor-button-wrapper,
 .elementor-widget-custom_card .elementor-button-wrapper {
     display: flex;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    margin-top: var(--card-button-gap, 15px);
-    gap: 10px;
+    gap: var(--button-gap, 10px);
+    width: auto; /* Wrapper juga tidak full width */
 }
 
 /* Horizontal layout with alignments */
@@ -247,11 +238,6 @@
 .card-plugin .elementor-button-wrapper.horizontal.end,
 .elementor-widget-custom_card .elementor-button-wrapper.horizontal.end {
     justify-content: flex-end;
-}
-
-.card-plugin .elementor-button-wrapper.horizontal.space-between,
-.elementor-widget-custom_card .elementor-button-wrapper.horizontal.space-between {
-    justify-content: space-between;
 }
 
 /* Vertical layout with alignments */
@@ -397,16 +383,271 @@
     align-items: center;
 }
 
-/* Mobile adjustments */
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .elementor-card-wrapper {
+        padding: calc(var(--card-padding-top, 0) * 0.8) 
+                calc(var(--card-padding-right, 0) * 0.8) 
+                calc(var(--card-padding-bottom, 0) * 0.8) 
+                calc(var(--card-padding-left, 0) * 0.8);
+    }
+
+    .elementor-card .elementor-heading-title {
+        font-size: calc(var(--title-font-size, 1em) * 0.9);
+    }
+
+    .elementor-card .elementor-text-editor {
+        font-size: calc(var(--description-font-size, 1em) * 0.9);
+    }
+}
+
 @media (max-width: 767px) {
-    .card-plugin .elementor-button-wrapper.horizontal,
-    .elementor-widget-custom_card .elementor-button-wrapper.horizontal {
+    .elementor-card-wrapper {
+        padding: calc(var(--card-padding-top, 0) * 0.6) 
+                calc(var(--card-padding-right, 0) * 0.6) 
+                calc(var(--card-padding-bottom, 0) * 0.6) 
+                calc(var(--card-padding-left, 0) * 0.6);
+    }
+
+    .elementor-card .elementor-heading-title {
+        font-size: calc(var(--title-font-size, 1em) * 0.8);
+        margin-bottom: calc(var(--card-title-gap, 0) * 0.8);
+    }
+
+    .elementor-card .elementor-text-editor {
+        font-size: calc(var(--description-font-size, 1em) * 0.8);
+        margin-bottom: calc(var(--card-description-gap, 0) * 0.8);
+    }
+
+    /* Button responsiveness */
+    .elementor-button-wrapper.horizontal {
         flex-direction: column;
-        align-items: stretch;
+        align-items: var(--button-alignment, flex-start); /* Mengikuti alignment yang diset */
+        width: auto; /* Tidak full width */
+    }
+
+    .elementor-button-wrapper.horizontal .elementor-button {
+        width: auto; /* Tidak full width */
+        margin: 5px 0;
+    }
+
+    /* Image responsiveness */
+    .elementor-card-image {
+        margin: 0;
+        line-height: 0;
+        font-size: 0;
     }
     
-    .card-plugin .elementor-button-wrapper.horizontal .elementor-button,
-    .elementor-widget-custom_card .elementor-button-wrapper.horizontal .elementor-button {
-        width: 100%;
+    .elementor-card-img {
+        margin: 0;
+        padding: 0;
+        display: block;
     }
+
+    .elementor-card-content {
+        padding-top: var(--card-content-spacing-mobile, 10px);
+    }
+    
+    /* Menghapus margin yang tidak perlu */
+    .elementor-card > *:first-child {
+        margin-top: 0;
+    }
+    
+    .elementor-card > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .elementor-card-wrapper {
+        padding: calc(var(--card-padding-top, 0) * 0.5) 
+                calc(var(--card-padding-right, 0) * 0.5) 
+                calc(var(--card-padding-bottom, 0) * 0.5) 
+                calc(var(--card-padding-left, 0) * 0.5);
+    }
+
+    .elementor-card .elementor-heading-title {
+        font-size: calc(var(--title-font-size, 1em) * 0.7);
+        margin-bottom: calc(var(--card-title-gap, 0) * 0.7);
+    }
+
+    .elementor-card .elementor-text-editor {
+        font-size: calc(var(--description-font-size, 1em) * 0.7);
+        margin-bottom: calc(var(--card-description-gap, 0) * 0.7);
+    }
+
+    /* Button size adjustment for mobile */
+    .elementor-button {
+        padding: 8px 16px;
+        font-size: 14px;
+        width: auto; /* Tetap tidak full width */
+    }
+
+    /* Stack buttons vertically on mobile */
+    .elementor-button-wrapper {
+        flex-direction: column;
+        gap: 10px;
+        width: auto; /* Tetap tidak full width */
+        align-items: var(--button-alignment, flex-start);
+    }
+
+    .elementor-button-wrapper .elementor-button {
+        width: auto; /* Tetap tidak full width */
+    }
+}
+
+/* Button alignment classes */
+.elementor-button-wrapper.start {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.elementor-button-wrapper.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.elementor-button-wrapper.end {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.elementor-divider-wrapper {
+    line-height: 0;
+    font-size: 0;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.elementor-divider {
+    text-align: center;
+    width: 100%;
+    height: var(--divider-weight, 0.001px);
+    background-color: var(--divider-color, #ddd);
+    margin: 0;
+    padding: 0;
+}
+
+/* Divider styles */
+.elementor-divider[class*="elementor-divider-"] {
+    border: none;
+    height: var(--divider-weight, 0.001px);
+    background-color: var(--divider-color, #ddd);
+}
+
+.elementor-divider.elementor-divider-solid {
+    height: var(--divider-weight, 0.001px);
+    background-color: var(--divider-color, #ddd);
+}
+
+.elementor-divider.elementor-divider-double {
+    height: calc(var(--divider-weight, 0.001px) * 3);
+    background-image: linear-gradient(to bottom,
+        var(--divider-color, #ddd) var(--divider-weight, 0.001px),
+        transparent var(--divider-weight, 0.001px),
+        transparent calc(var(--divider-weight, 0.001px) * 2),
+        var(--divider-color, #ddd) calc(var(--divider-weight, 0.001px) * 2)
+    );
+}
+
+.elementor-divider.elementor-divider-dotted {
+    height: var(--divider-weight, 0.001px);
+    background-image: linear-gradient(to right,
+        var(--divider-color, #ddd) 50%,
+        transparent 50%
+    );
+    background-size: calc(var(--divider-weight, 0.001px) * 4) var(--divider-weight, 0.001px);
+}
+
+.elementor-divider.elementor-divider-dashed {
+    height: var(--divider-weight, 0.001px);
+    background-image: linear-gradient(to right,
+        var(--divider-color, #ddd) 50%,
+        transparent 50%
+    );
+    background-size: calc(var(--divider-weight, 0.001px) * 8) var(--divider-weight, 0.001px);
+}
+
+/* Default color jika tidak diset */
+.elementor-widget-divider {
+    --divider-color: #ddd;
+    --divider-width: 100%;
+    --divider-weight: 0.001px;
+}
+
+.elementor-divider-separator {
+    display: inline-block;
+}
+
+/* Divider alignment */
+.elementor-divider-wrapper[style*="justify-content: flex-start"] .elementor-divider {
+    text-align: left;
+}
+
+.elementor-divider-wrapper[style*="justify-content: flex-end"] .elementor-divider {
+    text-align: right;
+}
+
+.elementor-divider-wrapper[style*="justify-content: center"] .elementor-divider {
+    text-align: center;
+}
+
+/* Divider spacing */
+.elementor-widget-divider .elementor-divider {
+    display: flex;
+}
+
+.elementor-widget-divider .elementor-divider__text {
+    font-size: 15px;
+    line-height: 1;
+    max-width: 95%;
+}
+
+.elementor-widget-divider .elementor-divider__element {
+    margin: 0 var(--divider-element-spacing);
+    flex-shrink: 0;
+}
+
+/* Divider sizes */
+.elementor-widget-divider .elementor-divider-separator {
+    display: flex;
+    margin: 0;
+    direction: ltr;
+}
+
+.elementor-widget-divider--view-line_icon .elementor-divider-separator,
+.elementor-widget-divider--view-line_text .elementor-divider-separator {
+    align-items: center;
+}
+
+.elementor-widget-divider--view-line_icon .elementor-divider-separator:after,
+.elementor-widget-divider--view-line_icon .elementor-divider-separator:before,
+.elementor-widget-divider--view-line_text .elementor-divider-separator:after,
+.elementor-widget-divider--view-line_text .elementor-divider-separator:before {
+    height: var(--divider-weight);
+    background-color: var(--divider-color);
+}
+
+/* Card Divider */
+.card-divider {
+    width: 100%;
+    margin: 15px 0;
+    border: 0;
+    border-top: solid #ddd;
+    height: 0;
+    display: block;
+    border-top-width: var(--divider-weight, 0.1px);
+}
+
+/* Hapus kelas yang tidak digunakan */
+.card-divider.thin,
+.card-divider.medium,
+.card-divider.thick {
+    display: none;
+}
+
+/* Content spacing */
+.elementor-card-content {
+    padding-top: var(--card-content-spacing, 15px);
 } 

@@ -298,19 +298,18 @@ function handle_card_update($post_id, $post_after, $post_before) {
 
 // Tambahkan hook untuk refresh frontend
 add_action('elementor/frontend/after_register_scripts', function() {
-    wp_add_inline_script('elementor-frontend', "
-        elementorFrontend.hooks.addAction('frontend/element_ready/custom_card.default', function($element) {
-            var cardId = $element.find('.custom-card').data('card-id');
-            if (cardId) {
-                jQuery.get(window.location.href, function(data) {
-                    var newContent = jQuery(data).find('.elementor-widget-custom_card[data-card-id=\"' + cardId + '\"]').html();
-                    if (newContent) {
-                        $element.html(newContent);
-                    }
-                });
-            }
-        });
-    ");
+    wp_enqueue_script(
+        'card-widget-script',
+        CARD_PLUGIN_URL . 'assets/js/card-widget.js',
+        ['jquery', 'elementor-frontend'],
+        '1.0.0',
+        true
+    );
+
+    wp_localize_script('card-widget-script', 'cardWidgetData', [
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('card_widget_nonce')
+    ]);
 });
 
 function handle_get_card_data() {

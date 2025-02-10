@@ -8,6 +8,7 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
+use Elementor\Group_Control_Css_Filter;
 
 if (!defined('ABSPATH')) exit;
 
@@ -77,6 +78,278 @@ class Card_Widget extends Widget_Base {
                 'label_block' => true,
             ]
         );
+
+        $this->end_controls_section();
+
+        // Image Style Section
+        $this->start_controls_section(
+            'section_image_style',
+            [
+                'label' => __('Image', 'card-plugin'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_align',
+            [
+                'label' => __('Alignment', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __('Left', 'card-plugin'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => __('Center', 'card-plugin'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => __('Right', 'card-plugin'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-card-image' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'width',
+            [
+                'label' => __('Width', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'default' => [
+                    'unit' => '%',
+                    'size' => 100,
+                ],
+                'tablet_default' => [
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'unit' => '%',
+                ],
+                'size_units' => ['%', 'px', 'vw'],
+                'range' => [
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 1,
+                        'max' => 1000,
+                    ],
+                    'vw' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-card-img' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'max_width',
+            [
+                'label' => __('Max Width', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'default' => [
+                    'unit' => '%',
+                    'size' => 100,
+                ],
+                'tablet_default' => [
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'unit' => '%',
+                ],
+                'size_units' => ['%', 'px', 'vw'],
+                'range' => [
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 1,
+                        'max' => 1000,
+                    ],
+                    'vw' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-card-img' => 'max-width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'height',
+            [
+                'label' => __('Height', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'default' => [
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'unit' => 'px',
+                ],
+                'size_units' => ['px', 'vh'],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 1000,
+                    ],
+                    'vh' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-card-img' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'object-fit',
+            [
+                'label' => __('Object Fit', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'cover',
+                'options' => [
+                    'cover' => __('Cover', 'card-plugin'),
+                    'contain' => __('Contain', 'card-plugin'),
+                    'fill' => __('Fill', 'card-plugin'),
+                    'none' => __('None', 'card-plugin'),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-card-img' => 'object-fit: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'object-position',
+            [
+                'label' => __('Object Position', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'center center',
+                'options' => [
+                    'center center' => __('Center Center', 'card-plugin'),
+                    'center left' => __('Center Left', 'card-plugin'),
+                    'center right' => __('Center Right', 'card-plugin'),
+                    'top center' => __('Top Center', 'card-plugin'),
+                    'top left' => __('Top Left', 'card-plugin'),
+                    'top right' => __('Top Right', 'card-plugin'),
+                    'bottom center' => __('Bottom Center', 'card-plugin'),
+                    'bottom left' => __('Bottom Left', 'card-plugin'),
+                    'bottom right' => __('Bottom Right', 'card-plugin'),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-card-img' => 'object-position: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs('image_effects');
+
+        $this->start_controls_tab(
+            'normal',
+            [
+                'label' => __('Normal', 'card-plugin'),
+            ]
+        );
+
+        $this->add_control(
+            'opacity',
+            [
+                'label' => __('Opacity', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 1,
+                        'min' => 0.10,
+                        'step' => 0.01,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-card-img' => 'opacity: {{SIZE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'css_filters',
+                'selector' => '{{WRAPPER}} .elementor-card-img',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'hover',
+            [
+                'label' => __('Hover', 'card-plugin'),
+            ]
+        );
+
+        $this->add_control(
+            'opacity_hover',
+            [
+                'label' => __('Opacity', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 1,
+                        'min' => 0.10,
+                        'step' => 0.01,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-card-img:hover' => 'opacity: {{SIZE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'css_filters_hover',
+                'selector' => '{{WRAPPER}} .elementor-card-img:hover',
+            ]
+        );
+
+        $this->add_control(
+            'background_hover_transition',
+            [
+                'label' => __('Transition Duration', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 3,
+                        'step' => 0.1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-card-img' => 'transition-duration: {{SIZE}}s',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
 
         $this->end_controls_section();
 
@@ -661,7 +934,7 @@ class Card_Widget extends Widget_Base {
 
         // Divider Section
         $this->start_controls_section(
-            'section_divider',
+            'section_divider_style',
             [
                 'label' => __('Divider', 'card-plugin'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -671,56 +944,34 @@ class Card_Widget extends Widget_Base {
         $this->add_control(
             'show_divider',
             [
-                'label' => __('Show Divider', 'card-plugin'),
+                'label' => esc_html__('Show Divider', 'card-plugin'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Yes', 'card-plugin'),
-                'label_off' => __('No', 'card-plugin'),
-                'return_value' => 'yes',
                 'default' => 'no',
-            ]
-        );
-
-        $this->add_control(
-            'divider_style',
-            [
-                'label' => __('Style', 'card-plugin'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'solid',
-                'options' => [
-                    'solid' => __('Solid', 'card-plugin'),
-                    'double' => __('Double', 'card-plugin'),
-                    'dotted' => __('Dotted', 'card-plugin'),
-                    'dashed' => __('Dashed', 'card-plugin'),
-                ],
-                'condition' => [
-                    'show_divider' => 'yes',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-divider' => 'border-style: {{VALUE}};',
-                ],
             ]
         );
 
         $this->add_control(
             'divider_weight',
             [
-                'label' => __('Ketebalan', 'card-plugin'),
+                'label' => esc_html__('Divider Weight', 'card-plugin'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => 0.1,
-                ],
+                'size_units' => ['px'],
                 'range' => [
                     'px' => [
-                        'min' => 0.1,
+                        'min' => 0,
                         'max' => 10,
-                        'step' => 0.1,
+                        'step' => 1,
                     ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 1,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .card-divider' => '--divider-weight: calc({{SIZE}} * 1px);',
                 ],
                 'condition' => [
                     'show_divider' => 'yes',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-divider' => 'height: {{SIZE}}px; background-color: var(--divider-color); border: none;',
                 ],
             ]
         );
@@ -731,11 +982,11 @@ class Card_Widget extends Widget_Base {
                 'label' => __('Color', 'card-plugin'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ddd',
+                'selectors' => [
+                    '{{WRAPPER}} .card-divider' => 'border-top-color: {{VALUE}};',
+                ],
                 'condition' => [
                     'show_divider' => 'yes',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}}' => '--divider-color: {{VALUE}};',
                 ],
             ]
         );
@@ -746,10 +997,6 @@ class Card_Widget extends Widget_Base {
                 'label' => __('Width', 'card-plugin'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['%', 'px'],
-                'default' => [
-                    'unit' => '%',
-                    'size' => 100,
-                ],
                 'range' => [
                     '%' => [
                         'min' => 1,
@@ -760,233 +1007,21 @@ class Card_Widget extends Widget_Base {
                         'max' => 1000,
                     ],
                 ],
-                'condition' => [
-                    'show_divider' => 'yes',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-divider' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'divider_gap',
-            [
-                'label' => __('Gap', 'card-plugin'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
                 'default' => [
-                    'size' => 15,
+                    'unit' => '%',
+                    'size' => 100,
                 ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
+                'selectors' => [
+                    '{{WRAPPER}} .card-divider' => 'width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'show_divider' => 'yes',
                 ],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-divider-wrapper' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
             ]
         );
 
-        $this->add_responsive_control(
+        $this->add_control(
             'divider_alignment',
-            [
-                'label' => __('Alignment', 'card-plugin'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'flex-start' => [
-                        'title' => __('Left', 'card-plugin'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => __('Center', 'card-plugin'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'flex-end' => [
-                        'title' => __('Right', 'card-plugin'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'default' => 'center',
-                'condition' => [
-                    'show_divider' => 'yes',
-                    'divider_width!' => '100',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-divider-wrapper' => 'display: flex; justify-content: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'divider_position',
-            [
-                'label' => __('Divider Position', 'card-plugin'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'after_title',
-                'options' => [
-                    'before_title' => __('Before Title', 'card-plugin'),
-                    'after_title' => __('After Title', 'card-plugin'),
-                    'before_image' => __('Before Image', 'card-plugin'),
-                    'after_image' => __('After Image', 'card-plugin'),
-                    'before_content' => __('Before Content', 'card-plugin'),
-                    'after_content' => __('After Content', 'card-plugin'),
-                    'before_button' => __('Before Button', 'card-plugin'),
-                    'after_button' => __('After Button', 'card-plugin')
-                ],
-                'condition' => [
-                    'show_divider' => 'yes',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        // Image Style Section
-        $this->start_controls_section(
-            'section_image_style',
-            [
-                'label' => __('Image Style', 'card-plugin'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        // Image Size
-        $this->add_responsive_control(
-            'image_width',
-            [
-                'label' => __('Width', 'card-plugin'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['%', 'px'],
-                'range' => [
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                    ],
-                ],
-                'default' => [
-                    'unit' => '%',
-                    'size' => 100,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-card-image' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'image_max_width',
-            [
-                'label' => __('Max Width', 'card-plugin'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-card-image' => 'max-width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'image_height',
-            [
-                'label' => __('Height', 'card-plugin'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', 'vh'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                    ],
-                    'vh' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-card-image' => 'height: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        // Image Border
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'image_border',
-                'selector' => '{{WRAPPER}} .elementor-card-image img',
-                'separator' => 'before',
-            ]
-        );
-
-        // Image Border Radius
-        $this->add_control(
-            'image_border_radius',
-            [
-                'label' => __('Border Radius', 'card-plugin'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-card-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        // Image Box Shadow
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'image_box_shadow',
-                'selector' => '{{WRAPPER}} .elementor-card-image img',
-            ]
-        );
-
-        // Image Margin
-        $this->add_responsive_control(
-            'image_margin',
-            [
-                'label' => __('Margin', 'card-plugin'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-card-image' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        // Image Padding
-        $this->add_responsive_control(
-            'image_padding',
-            [
-                'label' => __('Padding', 'card-plugin'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-card-image' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        // Image Alignment
-        $this->add_responsive_control(
-            'image_alignment',
             [
                 'label' => __('Alignment', 'card-plugin'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
@@ -1006,7 +1041,90 @@ class Card_Widget extends Widget_Base {
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .elementor-card-image' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .card-divider' => 'margin-left: {{VALUE}};',
+                ],
+                'selectors_dictionary' => [
+                    'left' => '0 auto 0 0',
+                    'center' => '0 auto',
+                    'right' => '0 0 0 auto',
+                ],
+                'condition' => [
+                    'show_divider' => 'yes',
+                    'divider_width[size]!' => 100,
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'divider_position',
+            [
+                'label' => esc_html__('Divider Position', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'after_title',
+                'options' => [
+                    'before_image' => esc_html__('Before Image', 'card-plugin'),
+                    'after_image' => esc_html__('After Image', 'card-plugin'),
+                    'before_title' => esc_html__('Before Title', 'card-plugin'),
+                    'after_title' => esc_html__('After Title', 'card-plugin'),
+                    'before_content' => esc_html__('Before Content', 'card-plugin'),
+                    'after_content' => esc_html__('After Content', 'card-plugin'),
+                    'before_button' => esc_html__('Before Button', 'card-plugin'),
+                    'after_button' => esc_html__('After Button', 'card-plugin'),
+                ],
+                'condition' => [
+                    'show_divider' => 'yes',
+                ],
+            ]
+        );
+
+        // Divider Top Spacing
+        $this->add_responsive_control(
+            'divider_top_spacing',
+            [
+                'label' => __('Divider Top Spacing', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'size' => 15,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .card-divider' => 'margin-top: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_divider' => 'yes',
+                ],
+            ]
+        );
+
+        // Divider Bottom Spacing
+        $this->add_responsive_control(
+            'divider_spacing',
+            [
+                'label' => __('Divider Bottom Spacing', 'card-plugin'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'size' => 15,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .card-divider' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_divider' => 'yes',
                 ],
             ]
         );
@@ -1122,6 +1240,7 @@ class Card_Widget extends Widget_Base {
                     'px' => [
                         'min' => 0,
                         'max' => 100,
+                        'step' => 1,
                     ],
                 ],
                 'selectors' => [
@@ -1140,74 +1259,107 @@ class Card_Widget extends Widget_Base {
             $card_post = \get_post($settings['select_card']);
             
             if ($card_post) {
-                // Get image from ACF
                 $image = get_field('_card_image', $card_post->ID);
-                
                 ?>
                 <div class="elementor-card">
-                    <?php 
-                    // Render image
-                    if ($image && is_array($image)) : ?>
-                        <div class="elementor-card-image">
-                            <img src="<?php echo esc_url($image['url']); ?>" 
-                                 alt="<?php echo esc_attr($image['alt']); ?>" 
-                                 class="elementor-card-img" />
-                        </div>
-                    <?php endif;
+                    <div class="elementor-card-wrapper">
+                        <?php 
+                        // Render divider before image
+                        if ('yes' === $settings['show_divider'] && 'before_image' === $settings['divider_position']) {
+                            echo '<hr class="card-divider">';
+                        }
 
-                    // Render title
-                    if (!empty($card_post->post_title)) : ?>
-                        <h3 class="elementor-heading-title"><?php echo \esc_html($card_post->post_title); ?></h3>
-                    <?php endif; ?>
-                    
-                    <?php // Render content
-                    if (!empty($card_post->post_content)) : ?>
-                        <div class="elementor-text-editor"><?php echo \wp_kses_post($card_post->post_content); ?></div>
-                    <?php endif; ?>
+                        // Render image
+                        if ($image && is_array($image)) : ?>
+                            <div class="elementor-card-image <?php echo esc_attr($settings['image_alignment'] ?? 'center'); ?>">
+                                <img src="<?php echo esc_url($image['url']); ?>" 
+                                     alt="<?php echo esc_attr($image['alt']); ?>" 
+                                     class="elementor-card-img" />
+                            </div>
+                        <?php endif;
 
-                    <?php
-                    // Render buttons dari settings widget (bukan dari ACF)
-                    if ($settings['show_button'] === 'yes' && !empty($settings['button_text'])) : 
-                        // Set button attributes
-                        $this->add_render_attribute(
-                            'button',
-                            [
-                                'class' => [
-                                    'elementor-button',
-                                    'elementor-size-' . $settings['button_size'],
-                                    'elementor-button-' . $settings['button_style'],
-                                    $settings['button_animation'] ? 'with-' . $settings['button_animation'] : '',
-                                ],
-                                'href' => $settings['button_url']['url'] ?? '#',
-                                'target' => !empty($settings['button_url']['is_external']) ? '_blank' : '_self',
-                                'rel' => !empty($settings['button_url']['nofollow']) ? 'nofollow' : '',
-                            ]
-                        );
-                    ?>
-                        <div class="elementor-button-wrapper <?php echo esc_attr($settings['button_direction'] ?? 'horizontal'); ?> <?php echo esc_attr($settings['button_alignment'] ?? 'center'); ?>">
-                            <a <?php echo $this->get_render_attribute_string('button'); ?>>
-                                <span class="elementor-button-content-wrapper">
-                                    <?php if (!empty($settings['button_icon']['value'])) : ?>
-                                        <?php if ($settings['button_icon_position'] === 'before') : ?>
-                                            <span class="elementor-button-icon elementor-align-icon-left">
-                                                <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true']); ?>
-                                            </span>
+                        // Render divider after image
+                        if ('yes' === $settings['show_divider'] && 'after_image' === $settings['divider_position']) {
+                            echo '<hr class="card-divider">';
+                        }
+
+                        echo '<div class="elementor-card-content">';
+
+                        // Render divider before title
+                        if ('yes' === $settings['show_divider'] && 'before_title' === $settings['divider_position']) {
+                            echo '<hr class="card-divider">';
+                        }
+
+                        // Render title
+                        if (!empty($card_post->post_title)) : ?>
+                            <h3 class="elementor-heading-title"><?php echo \esc_html($card_post->post_title); ?></h3>
+                        <?php endif;
+
+                        // Render divider after title
+                        if ('yes' === $settings['show_divider'] && 'after_title' === $settings['divider_position']) {
+                            echo '<hr class="card-divider">';
+                        }
+
+                        // Render divider before content
+                        if ('yes' === $settings['show_divider'] && 'before_content' === $settings['divider_position']) {
+                            echo '<hr class="card-divider">';
+                        }
+                        
+                        // Render content
+                        if (!empty($card_post->post_content)) : ?>
+                            <div class="elementor-text-editor"><?php echo \wp_kses_post($card_post->post_content); ?></div>
+                        <?php endif;
+
+                        // Render divider after content
+                        if ('yes' === $settings['show_divider'] && 'after_content' === $settings['divider_position']) {
+                            echo '<hr class="card-divider">';
+                        }
+
+                        echo '</div>'; // Close .elementor-card-content
+
+                        // Render button
+                        if ($settings['show_button'] === 'yes' && !empty($settings['button_text'])) : 
+                            // Set button attributes
+                            $this->add_render_attribute(
+                                'button',
+                                [
+                                    'class' => [
+                                        'elementor-button',
+                                        'elementor-size-' . $settings['button_size'],
+                                        'elementor-button-' . $settings['button_style'],
+                                        $settings['button_animation'] ? 'with-' . $settings['button_animation'] : '',
+                                    ],
+                                    'href' => $settings['button_url']['url'] ?? '#',
+                                    'target' => !empty($settings['button_url']['is_external']) ? '_blank' : '_self',
+                                    'rel' => !empty($settings['button_url']['nofollow']) ? 'nofollow' : '',
+                                ]
+                            );
+                        ?>
+                            <div class="elementor-button-wrapper <?php echo esc_attr($settings['button_direction'] ?? 'horizontal'); ?> <?php echo esc_attr($settings['button_alignment'] ?? 'center'); ?>">
+                                <a <?php echo $this->get_render_attribute_string('button'); ?>>
+                                    <span class="elementor-button-content-wrapper">
+                                        <?php if (!empty($settings['button_icon']['value'])) : ?>
+                                            <?php if ($settings['button_icon_position'] === 'before') : ?>
+                                                <span class="elementor-button-icon elementor-align-icon-left">
+                                                    <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true']); ?>
+                                                </span>
+                                            <?php endif; ?>
                                         <?php endif; ?>
-                                    <?php endif; ?>
-                                    
-                                    <span class="elementor-button-text"><?php echo esc_html($settings['button_text']); ?></span>
-                                    
-                                    <?php if (!empty($settings['button_icon']['value'])) : ?>
-                                        <?php if ($settings['button_icon_position'] === 'after') : ?>
-                                            <span class="elementor-button-icon elementor-align-icon-right">
-                                                <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true']); ?>
-                                            </span>
+                                        
+                                        <span class="elementor-button-text"><?php echo esc_html($settings['button_text']); ?></span>
+                                        
+                                        <?php if (!empty($settings['button_icon']['value'])) : ?>
+                                            <?php if ($settings['button_icon_position'] === 'after') : ?>
+                                                <span class="elementor-button-icon elementor-align-icon-right">
+                                                    <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true']); ?>
+                                                </span>
+                                            <?php endif; ?>
                                         <?php endif; ?>
-                                    <?php endif; ?>
-                                </span>
-                            </a>
-                        </div>
-                    <?php endif; ?>
+                                    </span>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <?php
             }
